@@ -5356,3 +5356,31 @@ class Solution(object):
             fact = (fact * i) % self.MOD
 
         return fact
+
+11/12
+#   3531. Count Covered Buildings
+
+class Solution(object):
+    def countCoveredBuildings(self, n, buildings):
+       
+        from collections import defaultdict
+
+        row_min = defaultdict(lambda: float('inf'))
+        row_max = defaultdict(lambda: float('-inf'))
+        col_min = defaultdict(lambda: float('inf'))
+        col_max = defaultdict(lambda: float('-inf'))
+
+        for x, y in buildings:
+            row_min[y] = min(row_min[y], x)
+            row_max[y] = max(row_max[y], x)
+            col_min[x] = min(col_min[x], y)
+            col_max[x] = max(col_max[x], y)
+
+        covered = 0
+
+        for x, y in buildings:
+            if (x > row_min[y] and x < row_max[y] and 
+                y > col_min[x] and y < col_max[x]): 
+                covered += 1
+
+        return covered
