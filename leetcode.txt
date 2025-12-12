@@ -5384,3 +5384,47 @@ class Solution(object):
                 covered += 1
 
         return covered
+
+12/12
+#   3433. Count Mentions Per User
+
+class Solution(object):
+    def countMentions(self, numberOfUsers, events):
+        events.sort(key=lambda e: (int(e[1]), 0 if e[0] == "OFFLINE" else 1))
+
+        mentions = [0] * numberOfUsers
+        offline_until = [0] * numberOfUsers  
+
+        for event in events:
+            event_type, t_s, data = event
+            t = int(t_s)
+            for u in range(numberOfUsers):
+                if offline_until[u] != 0 and offline_until[u] <= t:
+                    offline_until[u] = 0
+
+            if event_type == "OFFLINE":
+                user = int(data)
+                offline_until[user] = t + 60
+
+            else:
+                msg = data.split()
+
+                def is_online(u):
+                    return offline_until[u] == 0
+                if msg[0] == "ALL" and len(msg) == 1:
+                    for u in range(numberOfUsers):
+                        mentions[u] += 1
+                    continue
+
+                if msg[0] == "HERE" and len(msg) == 1:
+                    for u in range(numberOfUsers):
+                        if is_online(u):
+                            mentions[u] += 1
+                    continue
+
+                for token in msg:
+                    if token.startswith("id"):
+                        user = int(token[2:])
+                        mentions[user] += 1 
+
+        return mentions
