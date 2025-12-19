@@ -5608,3 +5608,53 @@ class Solution(object):
             best = max(best, nxt - prev)
 
         return base + best
+
+19/12
+#   2092. Find All People With Secret
+
+
+class Solution(object):
+    def findAllPeople(self, n, meetings, firstPerson):
+      
+        parent = list(range(n))
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px != py:
+                parent[py] = px
+
+        meetings.sort(key=lambda x: x[2])
+
+        secret = set([0, firstPerson])
+
+        i = 0
+        while i < len(meetings):
+            time = meetings[i][2]
+            temp = []
+
+            while i < len(meetings) and meetings[i][2] == time:
+                x, y, _ = meetings[i]
+                union(x, y)
+                temp.append((x, y))
+                i += 1
+
+            groups = {}
+            for x, y in temp:
+                px = find(x)
+                groups.setdefault(px, set()).update([x, y])
+
+            for group in groups.values():
+                if group & secret:
+                    secret |= group
+
+            for x, y in temp:
+                parent[x] = x
+                parent[y] = y
+
+        return list(secret)
