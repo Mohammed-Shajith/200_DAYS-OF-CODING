@@ -5731,3 +5731,28 @@ class Solution(object):
                     dp[j] = max(dp[j], dp[k] + 1)
         
         return m - max(dp)
+
+23/12
+#   2054. Two Best Non-Overlapping Events
+
+class Solution(object):
+    def maxTwoEvents(self, events):
+  
+        events.sort()
+        
+        import heapq
+        
+        max_val = 0  
+        ans = 0
+        pq = []  
+        
+        for start, end, value in events:
+            while pq and pq[0][0] < start:
+                _, v = heapq.heappop(pq)
+                max_val = max(max_val, v)
+            
+            ans = max(ans, max_val + value)
+            
+            heapq.heappush(pq, (end, value))
+        
+        return ans
