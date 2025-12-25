@@ -5776,3 +5776,22 @@ class Solution(object):
             if curr >= total_apples:
                 return count
 
+
+25/12
+#   3075. Maximize Happiness of Selected Children
+
+class Solution(object):
+    def maximumHappinessSum(self, happiness, k):
+       
+        happiness.sort(reverse=True)
+        
+        ans = 0
+        dec = 0
+        
+        for i in range(k):
+            curr = happiness[i] - dec
+            if curr > 0:
+                ans += curr
+            dec += 1
+        
+        return ans
