@@ -5847,3 +5847,24 @@ class Solution:
         for i in range(n):
             if count[i] == max_booked:
                 return i
+
+28/12
+#  1351. Count Negative Numbers in a Sorted Matrix
+
+class Solution(object):
+    def countNegatives(self, grid):
+        
+        m, n = len(grid), len(grid[0])
+        row, col = m - 1, 0
+        count = 0
+        
+        while row >= 0 and col < n:
+            if grid[row][col] < 0:
+                count += (n - col)
+                row -= 1
+            else:
+                col += 1
+        
+        return count
+
+
