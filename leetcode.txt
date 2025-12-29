@@ -5868,3 +5868,29 @@ class Solution(object):
         return count
 
 
+29/12
+#   756. Pyramid Transition Matrix
+
+class Solution {
+    bool f(int idx,int n,string cur,string bottom,map<pair<char,char>,vector<char>> &mpp){
+        if(n==1){
+            return true;
+        }
+        if(idx==n-1){
+            return f(0,n-1,"",cur,mpp);
+        }
+        for(auto it:mpp[make_pair(bottom[idx],bottom[idx+1])]){
+            if(f(idx+1,n,cur+it,bottom,mpp)) return true;
+        }
+        return false;
+    }
+public:
+    bool pyramidTransition(string bottom, vector<string>& allowed) {
+        int n = bottom.size();
+        map<pair<char,char>,vector<char>> mpp;
+        for(auto it:allowed){
+            mpp[make_pair(it[0],it[1])].push_back(it[2]);
+        } 
+        return f(0,n,"",bottom,mpp);
+    }
+};
