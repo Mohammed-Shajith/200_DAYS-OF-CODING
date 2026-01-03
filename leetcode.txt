@@ -6014,7 +6014,7 @@ public:
     }
 };
 
-02/01
+03/01
 #   1411. Number of Ways to Paint N × 3 Grid
 
 class Solution(object):
@@ -6026,3 +6026,4 @@ class Solution(object):
             A, B = (2*A + 2*B) % MOD, (2*A + 3*B) % MOD
 
         return (A + B) % MOD
+
