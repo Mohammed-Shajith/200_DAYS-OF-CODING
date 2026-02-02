@@ -247,6 +247,7 @@ I update this repo daily with my solution for each day.
 | 215 |     leetcode      |   py       | leetcode.txt | 30/01|
 | 216 |     leetcode      |   py       | leetcode.txt | 31/01|
 | 217 |     leetcode      |   py       | leetcode.txt | 01/02|
+| 218 |     leetcode      |   cpp      | leetcode.txt | 02/02|
 
 
 
@@ -258,6 +259,7 @@ To complete 200 days of continuous learning, strengthen algorithmic thinking, an
 ---
 
 > Feel free to ⭐ the repo and follow my journey! Let's grow together 💪
+
 
 
 
