@@ -7127,3 +7127,20 @@ class Solution(object):
             max_keep = max(max_keep, right - left + 1)
         
         return n - max_keep
+
+07/02
+#    1653. Minimum Deletions to Make String Balanced
+
+class Solution(object):
+    def minimumDeletions(self, s):
+        
+        deletions = 0 
+        count_b = 0
+        
+        for ch in s:
+            if ch == 'b':
+                count_b += 1
+            else:
+                deletions = min(deletions + 1, count_b)
+        
+        return deletions
