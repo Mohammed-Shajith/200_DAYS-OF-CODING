@@ -7282,3 +7282,29 @@ class Solution(object):
                 max_len = max(max_len, i - left_idx + 1)
                 
         return max_len
+
+12/02
+#   3713. Longest Balanced Substring I
+
+class Solution(object):
+    def longestBalanced(self, s):
+       
+        n = len(s)
+        ans = 0
+        
+        for i in range(n):
+            freq = [0] * 26
+            distinct = 0
+            
+            for j in range(i, n):
+                idx = ord(s[j]) - ord('a')
+                
+                if freq[idx] == 0:
+                    distinct += 1
+                freq[idx] += 1
+                
+                counts = [f for f in freq if f > 0]
+                if len(set(counts)) == 1:
+                    ans = max(ans, j - i + 1)
+        
+        return ans
