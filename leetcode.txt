@@ -7381,3 +7381,32 @@ public:
         return min(1.0, dp[query_row][query_glass]);
     }
 };
+
+15/02
+#    67. Add Binary
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        char c = '0';
+        int i = a.size()-1;
+        int j = b.size()-1;
+        string ans = "";
+
+        while (i >= 0 || j >= 0) {
+            int count_ones = 0;
+            if (c == '1') count_ones++;
+            if (i >= 0 && a[i] == '1') count_ones++;
+            if (j >= 0 && b[j] == '1') count_ones++;
+
+            ans = ((count_ones % 2 == 0) ? '0': '1') + ans;
+            c = (count_ones < 2) ? '0': '1';
+
+            i--;
+            j--;
+        }
+
+        if (c == '1') ans = '1' + ans;
+        return ans;
+    }
+};
