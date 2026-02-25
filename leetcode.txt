@@ -7593,3 +7593,25 @@ class Solution:
     def sumRootToLeaf(self, root):
         self.method(root, [])
         return self.val
+
+25/02
+#   1356. Sort Integers by The Number of 1 Bits
+
+class Solution:
+    def sortByBits(self, arr):
+        # create 15 buckets
+        lst = [[] for _ in range(15)]
+
+        # fill buckets
+        for num in arr:
+            bits = bin(num).count('1')
+            lst[bits].append(num)
+
+        # build answer
+        ans = []
+        for bucket in lst:
+            bucket.sort()
+            for num in bucket:
+                ans.append(num)
+
+        return ans
