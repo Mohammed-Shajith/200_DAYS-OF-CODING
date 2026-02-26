@@ -7615,3 +7615,20 @@ class Solution:
                 ans.append(num)
 
         return ans
+
+26/02
+#   1404. Number of Steps to Reduce a Number in Binary Representation to One
+
+class Solution(object):
+    def numSteps(self, s):
+       
+        steps = 0
+        carry = 0
+        n = len(s) - 1
+        for i in range(n, 0, -1):
+            if int(s[i]) + carry == 1:
+                carry = 1
+                steps += 2
+            else:
+                steps += 1
+        return steps + carry
