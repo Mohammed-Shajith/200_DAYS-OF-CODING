@@ -7690,3 +7690,31 @@ public:
         return swaps;
     }
 };
+
+03/02
+#    1545. Find Kth Bit in Nth Binary String
+
+class Solution {
+public:
+    string binaryStringBuilder(int n) {
+        if(n == 1) return "0";
+        
+        string n1 = binaryStringBuilder(n - 1);
+        int sz = n1.size();
+        string inv(sz, '0');
+        
+        for(int i = 0; i < sz; i++) {
+            if(n1[i] == '1') inv[i] = '0';
+            else inv[i] = '1';
+        }
+        
+        reverse(inv.begin(), inv.end());
+        
+        return n1 + "1" + inv;
+    }
+    
+    char findKthBit(int n, int k) {
+        string binStr = binaryStringBuilder(n);
+        return binStr[k - 1];
+    }
+};
