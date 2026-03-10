@@ -7898,3 +7898,32 @@ class Solution(object):
                         dp[i][j][1] = (dp[i][j][1] + dp[i][j-k][0]) % MOD
         
         return (dp[zero][one][0] + dp[zero][one][1]) % MOD
+
+10/03
+#   3130. Find All Possible Stable Binary Arrays II
+
+
+class Solution(object):
+    def numberOfStableArrays(self, zero, one, limit):
+        M = 10**9 + 7
+        dp = [[[0]*2 for _ in range(one+1)] for _ in range(zero+1)]
+        dp[0][0] = [1,1]
+
+        for z in range(zero+1):
+            for o in range(one+1):
+                if z==0 and o==0: 
+                    continue
+
+                if z:
+                    v = dp[z-1][o][0]
+                    if z>1: v += dp[z-1][o][1]
+                    if z>limit: v -= dp[z-1-limit][o][0]
+                    dp[z][o][1] = v % M
+
+                if o:
+                    v = dp[z][o-1][1]
+                    if o>1: v += dp[z][o-1][0]
+                    if o>limit: v -= dp[z][o-1-limit][1]
+                    dp[z][o][0] = v % M
+
+        return (dp[zero][one][0] + dp[zero][one][1]) % M
