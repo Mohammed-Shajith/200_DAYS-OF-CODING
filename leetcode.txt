@@ -7927,3 +7927,21 @@ class Solution(object):
                     dp[z][o][0] = v % M
 
         return (dp[zero][one][0] + dp[zero][one][1]) % M
+
+11/03
+#   1009. Complement of Base 10 Integer
+
+class Solution(object):
+    def bitwiseComplement(self, n):
+      
+        if n == 0:
+            return 1
+        
+        mask = 0
+        temp = n
+        
+        while temp > 0:
+            mask = (mask << 1) | 1
+            temp >>= 1
+        
+        return mask ^ n
