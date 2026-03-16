@@ -286,7 +286,8 @@ I update this repo daily with my solution for each day.
 | 255 |     leetcode      |   py       | leetcode.txt | 12/02|
 | 256 |     leetcode      |   py       | leetcode.txt | 13/02|
 | 257 |     leetcode      |   cpp      | leetcode.txt | 14/02|
-| 257 |     leetcode      |   py       | leetcode.txt | 15/02|
+| 258 |     leetcode      |   py       | leetcode.txt | 15/02|
+| 259 |     leetcode      |   py       | leetcode.txt | 16/02|
 
 
 
