@@ -8155,3 +8155,51 @@ class Fancy(object):
         if idx>=len(self.arr):
             return -1
         return (self.arr[idx]*self.mul +self.add)%self.mod
+
+06/03
+#   1878. Get Biggest Three Rhombus Sums in a Grid
+
+class Solution:
+    def getBiggestThree(self, grid):
+        m, n = len(grid), len(grid[0])
+
+        dp = [[0]*n for _ in range(m)] 
+        da = [[0]*n for _ in range(m)] 
+
+        for i in range(m):
+            for j in range(n):
+                dp[i][j] = grid[i][j] + (dp[i-1][j-1] if i>0 and j>0 else 0)
+                da[i][j] = grid[i][j] + (da[i-1][j+1] if i>0 and j<n-1 else 0)
+
+        def diag(r1, c1, r2, c2):
+            res = dp[r2][c2]
+            if r1>0 and c1>0: res -= dp[r1-1][c1-1]
+            return res
+
+        def anti(r1, c1, r2, c2):  
+            res = da[r2][c2]
+            if r1>0 and c1<n-1: res -= da[r1-1][c1+1]
+            return res
+
+        res = set()
+
+        def add_top3(val):
+            res.add(val)
+            if len(res) > 3:
+                res.discard(min(res))
+
+        for r in range(m):
+            for c in range(n):
+                add_top3(grid[r][c])
+                for k in range(1, min(m, n)):
+                    if r-k<0 or r+k>=m or c-k<0 or c+k>=n:
+                        break
+                    s = (diag(r-k, c,   r,   c+k) +  
+                         diag(r,   c-k, r+k, c  ) + 
+                         anti(r-k, c,   r,   c-k) +   
+                         anti(r,   c+k, r+k, c  ) - 
+                         grid[r-k][c] - grid[r][c+k]  
+                       - grid[r+k][c] - grid[r][c-k]) 
+                    add_top3(s)
+
+        return sorted(res, reverse=True)
