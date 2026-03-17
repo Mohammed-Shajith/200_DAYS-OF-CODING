@@ -8156,7 +8156,7 @@ class Fancy(object):
             return -1
         return (self.arr[idx]*self.mul +self.add)%self.mod
 
-06/03
+16/03
 #   1878. Get Biggest Three Rhombus Sums in a Grid
 
 class Solution:
@@ -8203,3 +8203,30 @@ class Solution:
                     add_top3(s)
 
         return sorted(res, reverse=True)
+17/03
+#   1727. Largest Submatrix With Rearrangements
+
+class Solution:
+    def largestSubmatrix(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+        height = [[0]*n for _ in range(m)]
+
+        for j in range(n):
+            height[0][j] = matrix[0][j]
+
+        for i in range(1, m):
+            for j in range(n):
+                if matrix[i][j] == 1:
+                    height[i][j] = height[i-1][j] + 1
+                else:
+                    height[i][j] = 0
+
+        area = 0
+
+        for i in range(m):
+            temp = sorted(height[i], reverse=True)
+            for j in range(n):
+                width = j + 1
+                area = max(area, temp[j] * width)
+
+        return area
