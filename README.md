@@ -295,6 +295,7 @@ I update this repo daily with my solution for each day.
 | 264 |     leetcode      |   py       | leetcode.txt | 21/03|
 | 265 |     leetcode      |   py       | leetcode.txt | 22/03|
 | 266 |     leetcode      |   py       | leetcode.txt | 23/03|
+| 267 |     leetcode      |   py       | leetcode.txt | 24/03|
 
 
 
