@@ -8676,3 +8676,10 @@ class Solution(object):
             return True;
         return False
         
+30/03
+#    2840. Check if Strings Can be Made Equal With Operations II
+
+class Solution(object):
+    def checkStrings(self, s1, s2):
+        return all(sorted(s1[i::2]) == sorted(s2[i::2]) for i in (0,1))
+        
