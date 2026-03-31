@@ -8683,3 +8683,42 @@ class Solution(object):
     def checkStrings(self, s1, s2):
         return all(sorted(s1[i::2]) == sorted(s2[i::2]) for i in (0,1))
         
+31/08
+#   3474. Lexicographically Smallest Generated String
+
+class Solution(object):
+    def generateString(self, str1, str2):
+    
+        n, m, L = len(str1), len(str2), len(str1) + len(str2) - 1
+        res, forced = [''] * L, [False] * L
+
+        for i in range(n):
+            if str1[i] == 'T':
+                for j, c in enumerate(str2):
+                    pos = i + j
+                    if res[pos] == '':
+                        res[pos], forced[pos] = c, True
+                    elif res[pos] != c:
+                        return ""
+
+        for i in range(L):
+            if res[i] == '':
+                res[i] = 'a'
+
+        for i in range(n):
+            if str1[i] == 'F' and all(res[i + j] == str2[j] for j in range(m)):
+                modified = False
+                for j in range(m - 1, -1, -1):
+                    pos = i + j
+                    if not forced[pos]:  
+                        for c in range(ord(res[pos]) + 1, ord('z') + 1):
+                            if chr(c) != str2[j]:
+                                res[pos] = chr(c)
+                                modified = True
+                                break
+                        if modified:
+                            break
+                if not modified:
+                    return ""
+
+        return "".join(res)
