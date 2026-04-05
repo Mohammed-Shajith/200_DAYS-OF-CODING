@@ -8890,3 +8890,23 @@ class Solution:
                 c += 1
         
         return "".join(res).rstrip()
+
+05/04
+#   657. Robot Return to Origin
+
+class Solution(object):
+    def judgeCircle(self, moves):
+        c=0
+        for i in moves:
+            if i =='U':
+                c+=1
+            elif i=='D':
+                c-=1
+            elif i == 'L':
+                c+=20
+            else:
+                c-=20
+        if c==0:
+            return True
+        return False
+        
