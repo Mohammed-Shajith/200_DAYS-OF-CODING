@@ -8910,3 +8910,49 @@ class Solution(object):
             return True
         return False
         
+06/04
+#   874. Walking Robot Simulation
+
+class Solution:
+    def robotSim(self, commands, obstacles):
+
+        st = set((x, y) for x, y in obstacles)
+
+        x = y = 0
+        ans = 0
+        dir = 'N'
+
+        for cmd in commands:
+
+            if cmd == -2: 
+                if dir == 'N': dir = 'W'
+                elif dir == 'W': dir = 'S'
+                elif dir == 'S': dir = 'E'
+                else: dir = 'N'
+
+            elif cmd == -1:  
+                if dir == 'N': dir = 'E'
+                elif dir == 'E': dir = 'S'
+                elif dir == 'S': dir = 'W'
+                else: dir = 'N'
+
+            else:
+                steps = cmd
+
+                while steps > 0:
+                    nx, ny = x, y
+
+                    if dir == 'N': ny += 1
+                    elif dir == 'S': ny -= 1
+                    elif dir == 'E': nx += 1
+                    else: nx -= 1
+
+                    if (nx, ny) in st:
+                        break
+
+                    x, y = nx, ny
+                    steps -= 1
+
+            ans = max(ans, x*x + y*y)
+
+        return ans
