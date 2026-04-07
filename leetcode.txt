@@ -8956,3 +8956,76 @@ class Solution:
             ans = max(ans, x*x + y*y)
 
         return ans
+07/04
+#   2069. Walking Robot Simulation II
+
+class Robot(object):
+
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height 
+        self.dx_dy = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        self.dir_names = ["East", "North", "West", "South"]
+        self.dir = 0 
+        self.x = 0
+        self.y = 0
+
+    def step(self, num):
+
+        if self.width == 1 or self.height == 1:
+            return
+
+        steps = num % (((self.width-1)+(self.height-1))*2)
+
+        if steps == 0 and self.x == 0 and self.y == 0:
+            self.dir = 3
+        
+        nx, ny = self.dx_dy[self.dir] 
+        while steps > 0:
+            if self.x + nx in [self.width, -1] or  self.y + ny in [self.height, -1] :
+                self.dir = (self.dir + 1) % 4
+                nx, ny = self.dx_dy[self.dir]     
+            
+            if nx == 1:
+                m = (self.width - self.x - 1)
+                if steps > m:
+                    steps -= m
+                    self.x += m
+                else:
+                    self.x += steps
+                    steps = 0
+            
+            if nx == -1:
+                m = self.x
+                if steps > m:
+                    steps -= m
+                    self.x -= m
+                else:
+                    self.x -= steps
+                    steps = 0
+            
+            if ny == 1:
+                m = (self.height - self.y - 1)
+                if steps > m:
+                    steps -= m
+                    self.y += m
+                else:
+                    self.y += steps
+                    steps = 0
+            
+            if ny == -1:
+                m = self.y
+                if steps > m:
+                    steps -= m
+                    self.y -= m
+                else:
+                    self.y -= steps
+                    steps = 0
+        
+
+    def getPos(self):
+        return [self.x, self.y]
+        
+
+    def getDir(self):
+        return self.dir_names[self.dir]
