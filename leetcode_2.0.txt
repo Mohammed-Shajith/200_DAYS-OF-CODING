@@ -44,3 +44,18 @@ class Solution(object):
                         res=min(res,2*(max(d[i][x],d[i][x+1],d[i][x+2])-min(d[i][x],d[i][x+1],d[i][x+2])))
         return res
         
+13/04
+#   1848. Minimum Distance to the Target Element
+
+class Solution:
+    def getMinDistance(self, nums, target, start):
+        n = len(nums)
+        
+        for d in range(n):
+            if start - d >= 0 and nums[start - d] == target:
+                return d
+            
+            if start + d < n and nums[start + d] == target:
+                return d
+        
+        return -1
