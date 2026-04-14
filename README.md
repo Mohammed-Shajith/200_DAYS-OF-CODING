@@ -316,6 +316,7 @@ __________________________________________________________________
 | 284 |     leetcode      |   py       | leetcode_2.0.txt | 10/04|
 | 285 |     leetcode      |   py       | leetcode_2.0.txt | 11/04|
 | 286 |     leetcode      |   py       | leetcode_2.0.txt | 13/04|
+| 287 |     leetcode      |   py       | leetcode_2.0.txt | 14/04|
 
 
 
