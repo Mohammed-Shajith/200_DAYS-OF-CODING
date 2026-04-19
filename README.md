@@ -320,6 +320,8 @@ __________________________________________________________________
 | 288 |     leetcode      |   py       | leetcode_2.0.txt | 15/04|
 | 289 |     leetcode      |   py       | leetcode_2.0.txt | 16/04|
 | 290 |     leetcode      |   py       | leetcode_2.0.txt | 17/04|
+| 291 |     leetcode      |   cpp      | leetcode_2.0.txt | 18/04|
+| 292 |     leetcode      |   cpp      | leetcode_2.0.txt | 19/04|
 
 
 
