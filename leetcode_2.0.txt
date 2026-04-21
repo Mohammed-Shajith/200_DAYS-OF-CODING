@@ -230,3 +230,54 @@ public:
         return max(n - 1 - left, right);
     }
 };
+
+21/04
+#   1722. Minimize Hamming Distance After Swap Operations
+
+from collections import defaultdict
+
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n + 1))
+        self.size = [1] * (n + 1)
+
+    def find(self, node):
+        if self.parent[node] != node:
+            self.parent[node] = self.find(self.parent[node])
+        return self.parent[node]
+
+    def unite(self, u, v):
+        root_u = self.find(u)
+        root_v = self.find(v)
+
+        if root_u != root_v:
+            if self.size[root_u] < self.size[root_v]:
+                self.parent[root_u] = root_v
+                self.size[root_v] += self.size[root_u]
+            else:
+                self.parent[root_v] = root_u
+                self.size[root_u] += self.size[root_v]
+
+
+class Solution:
+    def minimumHammingDistance(self, source, target, allowedSwaps):
+        n = len(source)
+        ds = DSU(n)
+
+        for u, v in allowedSwaps:
+            ds.unite(u, v)
+
+        groups = defaultdict(lambda: defaultdict(int))
+        for i in range(n):
+            groups[ds.find(i)][source[i]] += 1
+
+        ans = 0
+
+        for i in range(n):
+            parent = ds.find(i)
+            if groups[parent][target[i]] > 0:
+                groups[parent][target[i]] -= 1
+            else:
+                ans += 1
+
+        return ans
