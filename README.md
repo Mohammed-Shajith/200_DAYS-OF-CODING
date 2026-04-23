@@ -325,6 +325,7 @@ __________________________________________________________________
 | 293 |     leetcode      |   cpp      | leetcode_2.0.txt | 20/04|
 | 294 |     leetcode      |   py       | leetcode_2.0.txt | 21/04|
 | 295 |     leetcode      |   py       | leetcode_2.0.txt | 22/04|
+| 296 |     leetcode      |   py       | leetcode_2.0.txt | 23/04|
 
 
 
