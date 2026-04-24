@@ -346,3 +346,23 @@ if __name__ == "__main__":
     result = obj.distance(nums)
     
     print("Output:", result)
+
+24/04
+#   2833. Furthest Point From Origin
+
+class Solution(object):
+    def furthestDistanceFromOrigin(self, moves):
+        
+        L = 0
+        R = 0
+        B = 0
+
+        for c in moves:
+            if c == 'L':
+                L += 1
+            elif c == 'R':
+                R += 1
+            else:
+                B += 1
+
+        return abs(L - R) + a
