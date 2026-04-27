@@ -467,3 +467,41 @@ class Solution:
                         return True
 
         return False
+27/04
+#   1391. Check if There is a Valid Path in a Grid
+
+class Solution(object):
+    def checkPath(self, mat, i, j, vis, mydict):
+        N = len(mat) 
+        M = len(mat[0]) 
+        if(i==N-1 and j == M-1): return True
+
+        direction = mydict[mat[i][j]]
+        vis[i][j] = 1
+        for pair in direction:
+            X, Y = pair
+            ni = X + i
+            nj = Y + j
+            if( (ni >=0 and  ni < N) and (nj >= 0 and nj <M) ):
+                if(vis[ni][nj] == 0):
+                    if((-X,-Y) in mydict[mat[ni][nj]] ):
+                        if(self.checkPath(mat, ni, nj, vis, mydict)):
+                            return True
+            
+        return False
+
+
+    def hasValidPath(self, grid):
+        N = len(grid) # Row
+        M = len(grid[0]) # Col
+        vis = [[0 for _ in range(M)] for _ in range(N)]
+        mydict = {}
+        mydict[1] = [(0,-1),(0,1)]
+        mydict[2] = [(-1,0),(1,0)]
+        mydict[3] = [(0,-1),(1,0)]
+        mydict[4] = [(1,0),(0,1)]
+        mydict[5] = [(0,-1),(-1,0)]
+        mydict[6] = [(-1,0),(0,1)]
+    
+        return self.checkPath(grid, 0, 0, vis, mydict)
+        
