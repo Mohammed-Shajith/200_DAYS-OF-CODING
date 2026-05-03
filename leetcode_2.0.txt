@@ -648,3 +648,20 @@ public:
         return count;
     }
 };
+
+03/05
+#   796. Rotate String
+
+class Solution(object):
+    def rotateString(self, s, goal):
+        if len(s) != len(goal):
+            return False
+            
+        target = s[0]
+        
+        for i, char in enumerate(goal):
+            if char == target:
+                if s == goal[i:] + goal[:i]:
+                    return True
+                    
+        return False 
