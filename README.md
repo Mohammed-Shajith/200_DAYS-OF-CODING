@@ -337,6 +337,7 @@ I update this repo daily with my solution for each day.
 | 306 |     leetcode      |   cpp      | leetcode_2.0.txt | 03/05|
 | 307 |     leetcode      |   cpp      | leetcode_2.0.txt | 04/05|
 | 308 |     leetcode      |   py       | leetcode_2.0.txt | 05/05|
+| 309 |     leetcode      |   py       | leetcode_2.0.txt | 06/05|
 
 
 
