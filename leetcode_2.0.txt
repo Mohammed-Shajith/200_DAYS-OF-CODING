@@ -1004,3 +1004,15 @@ class Solution:
 class Solution:
     def separateDigits(self, nums):
         return [int(c) for x in nums for c in str(x)]
+
+12/05
+#  1665. Minimum Initial Energy to Finish Tasks
+
+class Solution:
+    def minimumEffort(self, tasks):
+        tasks.sort(key=lambda x: x[1] - x[0])
+
+        result = 0
+        for t in tasks:
+            result = max(result + t[0], t[1])
+        return result
