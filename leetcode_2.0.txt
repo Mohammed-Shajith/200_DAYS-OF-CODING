@@ -1199,3 +1199,16 @@ class Solution(object):
                 del positions[arr[pos]]
         
         return -1 
+
+19/05
+#  2540. Minimum Common Value
+
+class Solution(object):
+    def getCommon(self, nums1, nums2):
+        set_of_nums = set(nums1)
+        
+        for num in nums2:
+            if num in set_of_nums:
+                return num
+                
+        return -1
