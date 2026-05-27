@@ -1372,3 +1372,35 @@ class Solution(object):
                     res+=1;
                 big[ord(i)-ord('A')]=1;
         return res;
+
+27/05
+#   
+
+class Solution(object):
+    def numberOfSpecialChars(self, word):
+        
+        mp = defaultdict(int) 
+      
+        count = 0
+        for l in word:
+            o = ord(l)
+            if 97 <= o <= 122: 
+                if mp[o] == 0:
+                    mp[o] = 1
+                elif mp[o] == 2:
+                    mp[o] = 3
+                
+            elif 65 <= o <= 90: 
+                low = o + 32
+                if mp[low] == 0:
+                    mp[low] = 3
+                elif mp[low] == 1:
+                    mp[low] = 2
+
+
+        for k,v in mp.items():
+            count += 1 if v == 2 else 0
+
+        return count
+        
+        
