@@ -359,6 +359,7 @@ I update this repo daily with my solution for each day.
 | 327 |     leetcode      |   py       | leetcode_2.0.txt | 25/05|
 | 328 |     leetcode      |   py       | leetcode_2.0.txt | 26/05|
 | 329 |     leetcode      |   py       | leetcode_2.0.txt | 27/05|
+| 330 |     leetcode      |   py       | leetcode_2.0.txt | 28/05|
 
 
 
