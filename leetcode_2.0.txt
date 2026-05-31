@@ -1508,3 +1508,18 @@ class Solution:
                 last_mark = marks[idx-1]
                 results.append(bit.query_max(last_mark)>=size_needed or pos-last_mark>=size_needed)
         return results[::-1] 
+
+31/05
+#   2126. Destroying Asteroids
+
+class Solution(object):
+    def asteroidsDestroyed(self, mass, asteroids):
+    
+        asteroids.sort()
+        
+        for asteroid in asteroids:
+            if asteroid > mass:
+                return False
+            mass += asteroid
+
+        return True
