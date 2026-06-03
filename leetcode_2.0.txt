@@ -1509,6 +1509,7 @@ class Solution:
                 results.append(bit.query_max(last_mark)>=size_needed or pos-last_mark>=size_needed)
         return results[::-1] 
 
+
 31/05
 #   2126. Destroying Asteroids
 
@@ -1558,5 +1559,67 @@ class Solution:
                 finish2 = max(water_finish, landStartTime[i]) + landDuration[i]
 
                 ans = min(ans, finish1, finish2)
+
+        return ans
+
+03/06
+#  1929. Concatenation of Array
+
+class Solution(object):
+    def getConcatenation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        return nums + nums
+
+# 26. Remove Duplicates from Sorted Array
+
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        k=1
+        for i in range(1,len(nums)):
+            if nums[i] != nums[i-1]:
+                nums[k] = nums[i]
+                k+=1
+        return k
+
+#   1299. Replace Elements with Greatest Element on Right Side
+
+class Solution(object):
+    def replaceElements(self, arr):
+    
+        max_ = -1
+
+        for i in range(len(arr)-1,-1,-1):
+            temp = arr[i]
+            arr[i] = max_
+            max_ = max(max_ ,temp)
+        return arr 
+
+
+#   3635. Earliest Finish Time for Land and Water Rides II
+
+class Solution:
+    def earliestFinishTime(self, lst, ldu, wst, wdu):
+        ans = float("inf")
+        mln = float("inf")
+        mnw = float("inf")
+
+        for i in range(len(lst)):
+            mln = min(mln, lst[i] + ldu[i])
+
+        for i in range(len(wst)):
+            ans = min(ans, max(mln, wst[i]) + wdu[i])
+
+        for i in range(len(wst)):
+            mnw = min(mnw, wst[i] + wdu[i])
+
+        for i in range(len(lst)):
+            ans = min(ans, max(mnw, lst[i]) + ldu[i])
 
         return ans
