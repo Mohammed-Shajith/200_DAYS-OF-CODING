@@ -1691,3 +1691,21 @@ class Solution:
             return dfs(0, False, 10, 10, True)[1]
 
         return solve(num2) - solve(num1 - 1)
+
+
+06/06
+#   2574. Left and Right Sum Differences
+
+class Solution:
+    def leftRightDifference(self, nums: List[int]) -> List[int]:
+        right_sum = sum(nums)
+
+        left_sum = 0
+        result = []
+
+        for num in nums:
+            right_sum -= num
+            result.append(abs(left_sum - right_sum))
+            left_sum += num
+
+        return result
