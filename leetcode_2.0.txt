@@ -1685,7 +1685,6 @@ class Solution:
 
                         total_cnt += cnt
                         total_wav += wav + add * cnt
-
                 return (total_cnt, total_wav)
 
             return dfs(0, False, 10, 10, True)[1]
@@ -1709,3 +1708,40 @@ class Solution:
             left_sum += num
 
         return result
+
+07/06
+#   2196. Create Binary Tree From Descriptions
+
+class Solution:
+    def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]: 
+        node_dict = {}
+        child_set = set()
+
+        root = None
+
+        for description in descriptions:
+            val = description[0]
+            if val in node_dict:
+                tree = node_dict[val]
+            else:
+                tree = TreeNode(val)
+                node_dict[val] = tree
+
+            child_value = description[1]
+
+            if child_value in node_dict:
+                child_tree = node_dict[child_value]
+            else:
+                child_tree = TreeNode(child_value)
+                node_dict[child_value] = child_tree
+
+            child_set.add(child_tree)
+
+            if description[2] == 1:
+                tree.left = child_tree
+            else:
+                tree.right = child_tree
+
+        for root_value, tree in node_dict.items():
+            if tree not in child_set:
+                return tree
