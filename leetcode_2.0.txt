@@ -1987,3 +1987,16 @@ class Solution:
         x = hour + minutes / 60
         diff = (11 * x) % 12
         return min(diff, 12 - diff) * 30
+
+19/06
+#   1732. Find the Highest Altitude
+
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        current = 0
+        highest = 0
+        for g in gain:
+            current += g
+            highest = max(current , highest)
+        return highest
+        
